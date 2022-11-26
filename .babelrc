@@ -1,0 +1,8 @@
+{ 
+    "presets": [ // настройки 
+        ["@babel/preset-env", { // сама настройка  
+            "useBuiltIns": "usage", // параметры настройки 
+            "corejs": 3 
+        }]  
+    ] 
+}

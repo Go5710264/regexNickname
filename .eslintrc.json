@@ -1,0 +1,19 @@
+{ 
+    "env": { // указать с чем работает eslint 
+        "browser": true, 
+        "es6": true,
+        "jest": true 
+    }, 
+    "extends": "airbnb-base", // какой набор правил используется 
+    "parserOptions": { 
+        "ecmaVersion": 2018, 
+        "sourceType": "module" 
+    },
+    "rules": {
+        "no-restricted-syntax": [
+          "error",
+          "LabeledStatement",
+          "WithStatement"
+        ]
+      }
+}

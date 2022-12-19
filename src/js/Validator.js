@@ -4,14 +4,19 @@ export default class Validator {
   }
 
   validateUsername() {
-    if (/((^[a-zA-Z]+?)([\w-]+)([a-zA-Z]+?$))/.test(this.username)) {
-      if (/\d{4,}/.test(this.username)) {
-        throw new Error('Недопустимо использовать более трех цифр подряд');
-      } else {
-        return 'Корректный никнейм';
-      }
-    } else {
-      throw new Error('Допустимы только латинские буквы, символы тире -, подчёркивания _, цифры (0-9), никнейм не должен начинаться и заканчиваться с цифр, символов _ и -');
+    const firstRule = /\d{4,}/.test(this.username);
+    const secondRule = /[^\w-]/.test(this.username);
+    const thirdRule = /^[a-zA-Z]+[\w-]+[a-zA-Z]+$/.test(this.username);
+
+    if (firstRule) {
+      throw new Error('Необходимо использовать не более трех цифр подряд');
     }
+    if (secondRule) {
+      throw new Error('Необходимо использовать только цифры, английский алфавит, -, _');
+    }
+    if (!thirdRule) {
+      throw new Error('Начало и окончание никнейма должны содержать только буквы');
+    }
+    return `validation ${this.username} completed successfully`;
   }
 }
